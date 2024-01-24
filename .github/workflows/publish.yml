@@ -25,6 +25,12 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Debug
+        run: |
+          echo "GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
+          echo "DOCKER_USERNAME: ${{ github.repository_owner }}"
+          echo "DOCKER_IMAGE_TAGS: ${{ steps.meta.outputs.tags }}"
+
       - name: Build container
         uses: docker/build-push-action@v5
         with:
